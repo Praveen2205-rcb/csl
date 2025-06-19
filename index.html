@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Restricted Area</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #111; color: #eee; }
+    input { margin: 5px 0; padding: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Authorization Required</h2>
+  <form onsubmit="verify(event)">
+    <input type="text" id="u" placeholder="Username" required><br>
+    <input type="password" id="p" placeholder="Password" required><br>
+    <input type="submit" value="Login">
+  </form>
+  <p id="msg"></p>
+  <script>
+    function verify(e) {
+      e.preventDefault();
+      const u = document.getElementById('u').value.trim();
+      const p = document.getElementById('p').value;
+      const cu = "YWRtaW4=";
+      const cp = "cGFzc3dvcmQxMjM=";
+      const f= "RkxBR3tzZWNyZXRfZmxhZ19oZXJlfQ==";
+      if (btoa(u) === cu && btoa(p) === cp) {
+        document.getElementById('msg').innerHTML = "<pre>" + atob(f) + "</pre>";
+      } else {
+        document.getElementById('msg').innerText = "Access Denied.";
+      }
+    }
+  </script>
+</body>
+</html>
